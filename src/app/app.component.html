@@ -1,0 +1,24 @@
+ <div class="vv">
+ <ul class="center">
+ <input  type="text" placeholder="Tarefa" #taskName>
+  <input  type="checkbox" name="done" #done>
+  <button  (click)="add(taskName.value, done.checked)">Salvar</button>
+</ul>
+</div>
+<ul *ngIf="tasks.length!=0"
+[ngStyle]="{
+'background-color': tasks.length>2 ? 'black' : null
+}"
+>
+  <h2>Lista de tarefas</h2>
+  <li  *ngFor ="let task of tasks; let i = index"
+  [ngClass]="{'done': task.done}"
+  >
+    
+    {{task.taskName}} - {{task.done}}
+  
+    <button (click)="del(i)">Apagar</button>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
